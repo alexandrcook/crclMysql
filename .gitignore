@@ -1,0 +1,10 @@
+*.xml
+*.iml
+.name
+*.name
+.idea/
+bower_components/
+build/
+node_modules/
+dbbackup/
+.test

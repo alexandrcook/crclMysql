@@ -1,0 +1,22 @@
+{
+  "name": "phpstart",
+  "description": "",
+  "main": "",
+  "authors": [
+    "alexandrcook <alexandr.cook.ua@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "*",
+    "jquery": "2.*",
+    "bootstrap": "^3.3.7"
+  },
+  "homepage": ""
+}
