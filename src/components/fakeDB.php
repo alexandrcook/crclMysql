@@ -13,7 +13,7 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-var_dump($db);
+//var_dump($db);
 
 $insertedIds = [];
 

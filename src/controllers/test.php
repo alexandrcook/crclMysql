@@ -1,24 +1,15 @@
 <?php
 
-echo 'testController<br>';
+echo '<br>testController<br>';
 
-function index($inputParams)
+function index($id = null)
 {
-    echo 'default Function<br>';
-    if($inputParams != null){
-        var_dump($inputParams);
-    }else{
-        echo 'Никаких параметров не получено';
-    }
+    echo '<br>' . __FUNCTION__ . ' Function<br>';
+        //var_dump($id);
+
 }
 
-function some($inputParams)
+function some()
 {
-    echo 'some Function<br>';
-    if($inputParams != null){
-        var_dump($inputParams);
-    }else{
-        echo 'Никаких параметров не получено';
-    }
-
+    echo '<br>' . __FUNCTION__ . ' Function<br>';
 }

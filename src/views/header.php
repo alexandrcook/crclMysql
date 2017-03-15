@@ -10,81 +10,70 @@
     <!-- Custom CSS -->
     <link href="/views/template/css/shop-homepage.css" rel="stylesheet">
     <!-- jQuery -->
-    <script src="/views/js/jquery.js"></script>
+    <script src="/views/template/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/views/template/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-
-            var rebuildTable = function ($tableName) {
-                var $parent = ($($tableName));
-                var $tableHead = $('h2', $tableName);
-                var $tableHeadNum = $('span', $tableHead);
-                console.log($tableHeadNum.html());
-                $tableHeadNum.html(parseInt($tableHeadNum.html()) + 1);
-                var $tbody = $('tbody', $parent);
-                var $allTr = $('tr', $tbody);
-                $allTr.each(function () {
-                    var allTd = $('td', this);
-                    var $firstTd = $(allTd[0]);
-                    $firstTd.html(parseInt($firstTd.html()) + 1);
-                    console.log($firstTd.html());
-                })
-            };
-
-            $('#searchFormAjax').on('submit', function (event) {
-                event.stopPropagation(); // Остановка происходящего
-                event.preventDefault();  // Полная остановка происходящего
-
-                var form_data = new FormData(this); //constructs key/value pairs representing fields and values
-
-                $.ajax({ //ajax form submit
-                    url: "/guestbook",
-                    type: 'POST',
-                    data: form_data,
-                    dataType: "json",
-                    contentType: false,
-                    cache: false,
-                    processData: false
-                }).done(function (res) {
-                    console.log('res type ' + res.type);
-                    //fetch server "json" messages when done
-                    if (res.type == "error") {
-                        $("#contact_results").html('<div class="error">' + res.text + "</div>");
-                    }
-                    if (res.type == "done") {
-                        console.log(res);
-                        $("#contact_results").html('<div class="success">' + res.text + "</div>");
-                    }
-                }).error(function (error) {
-                        console.log(error);
-                        //console.log(textStatus);
-                        //console.log(jqXHR);
-                        var data = error.responseText;
-                        //$(".ajax-respond").html('<div class="error">' + data + "</div>");
-                        $('.toload').html('');
-                        $('.toload').append('<h1>Отзыв добавлен</h1>');
-                        $('#tableToLoadData').prepend(data);
-                        rebuildTable('#toLoadTable');
-                        $('#searchFormAjax').trigger('reset');
-                        console.log(data);
-                });
-            });
-
-        });
-
-    </script>
     <title>Crcl MySQL</title>
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
 <div class="container">
     <div class="row">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Tog navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+<!--                    <a class="navbar-brand page-scroll" href="/">GuestBook</a>-->
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav" style="width: 100%; margin-left: -15px">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a class="page-scroll" href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="/">Головна</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="/guestbook">Не головна</a>
+                        </li>
+
+                        <?php
+                        if(isset($_SESSION['user_name'])){
+                            echo ('<li style="float: right">');
+                            echo ('<span style="display: inline-block; margin-top: 15px">Залогинен - "'.$_SESSION['user_name'].'"</span>
+                            <a style="display: inline-block; padding: 5px" class="btn btn-default" href="/login/logout">Выйти</a>');
+                            echo ('</li>');
+                        }else{
+                            echo('<li style="float: right"><a class="page-scroll" href="/login">Login/Register</a></li>');
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
         <div class="col-xs-12 messages-pole">
             <div class="toload"></div>
-
+                <?php
+                echo ('Flash info:<br>');
+                echo ('<h3 class="flash-msg">');
+                if(isset($_SESSION['flash_msg'])){
+                    echo($_SESSION['flash_msg']);
+                    unset($_SESSION['flash_msg']);
+                }
+                echo ('</h3>');
+                ?>
             <hr>
         </div>
     </div>
+
 
 
