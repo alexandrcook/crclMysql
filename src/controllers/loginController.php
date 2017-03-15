@@ -1,6 +1,6 @@
 <?php
 
-require_once PATHROOT . '/models/modelLogin.php';
+require_once PATHROOT . '/models/loginModel.php';
 
 function index()
 {
@@ -9,7 +9,6 @@ function index()
 
 function auth($pdo)
 {
-    var_dump($_POST);
     $login = isset($_POST['login']) ? $_POST['login'] : null;
     $pass = isset($_POST['pass']) ? $_POST['pass'] : null;
     $rememberMe = isset($_POST['rememberMe']) ? $_POST['rememberMe'] : null;

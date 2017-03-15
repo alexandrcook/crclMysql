@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col-xs-12">
+        <hr>
+        <h2>Переменные проекта:</h2>
         <?php
+        if(isset($data)){
+            echo('<h4>$data</h4>');
+            var_dump($data);
+        }
         echo('<h4>$_SESSION</h4>');
         var_dump($_SESSION);
         echo('<h4>$_COOKIE</h4>');

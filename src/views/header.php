@@ -43,11 +43,13 @@
                         <li>
                             <a class="page-scroll" href="/guestbook">Не головна</a>
                         </li>
-
+                        <li>
+                            <a class="page-scroll" href="/categories">Категории товаров</a>
+                        </li>
                         <?php
                         if(isset($_SESSION['user_name'])){
                             echo ('<li style="float: right">');
-                            echo ('<span style="display: inline-block; margin-top: 15px">Залогинен - "'.$_SESSION['user_name'].'"</span>
+                            echo ('<span style="display: inline-block; margin-top: 15px">Залогинен пользователь <b>"'.$_SESSION['user_name'].'"</b></span></span>
                             <a style="display: inline-block; padding: 5px" class="btn btn-default" href="/login/logout">Выйти</a>');
                             echo ('</li>');
                         }else{
