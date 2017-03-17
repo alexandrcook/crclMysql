@@ -306,7 +306,7 @@ gulp.task('browser-sync', function () {
         },
         tunnel: true,
         host: 'localhost',
-        port: 9000,
+        port: 8000,
         logPrefix: ""
     });
 });

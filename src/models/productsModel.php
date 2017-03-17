@@ -6,7 +6,7 @@ function getProducts($pdo){
     return $categoriesArr;
 }
 
-function getProductById($pdo,$id){
+function getProductByCatId($pdo,$id){
     $products = $pdo->query("SELECT * FROM `products` WHERE `category_id` = {$id}");
     $productsArr = $products->fetchAll();
     return $productsArr;

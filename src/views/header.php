@@ -38,15 +38,18 @@
                             <a class="page-scroll" href="#page-top"></a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="/">Головна</a>
+                            <a class="page-scroll" href=" https://github.com/alexandrcook/crclMysql"><b>GitHub</b></a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="/guestbook">Не головна</a>
+                            <a class="page-scroll" href="/">Головна</a>
                         </li>
                         <li>
                             <a class="page-scroll" href="/categories">Категории товаров</a>
                         </li>
                         <?php
+
+                        global $pdo;
+
                         if(isset($_SESSION['user_name'])){
                             echo ('<li style="float: right">');
                             echo ('<span style="display: inline-block; margin-top: 15px">Залогинен пользователь <b>"'.$_SESSION['user_name'].'"</b></span></span>
@@ -55,7 +58,13 @@
                         }else{
                             echo('<li style="float: right"><a class="page-scroll" href="/login">Login/Register</a></li>');
                         }
+
+                        if(isset($_SESSION['user_name'])){
                         ?>
+                            <li style="float: right">
+                            <a class="page-scroll" href="/orders/basket">Корзина - <?= productInBasketCount($pdo); ?> товар(ов)</a>
+                        </li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

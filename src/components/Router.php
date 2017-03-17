@@ -12,7 +12,4 @@ if (!empty($_SERVER['REQUEST_URI']) and trim($_SERVER['REQUEST_URI'], '/') != ''
         }
         else $action = $parsedUrlArr[1];
     }
-    include_once PATHROOT.'/components/Controllers.php';
-}else{
-    view('default');
 }

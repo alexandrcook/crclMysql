@@ -2,12 +2,11 @@
 
 require_once PATHROOT . '/models/productsModel.php';
 
-function index($pdo){
-    $categoriesArr = getCategories($pdo);
-    view('categories', null, $categoriesArr);
-}
+//function prodIndex($pdo){
+//    $categoriesArr = getCategories($pdo);
+//    view('categories', $categoriesArr);
+//}
+//
+function prodById($pdo, $prod_id){
 
-function categoryById($pdo, $id){
-    $productsArr = getCategoryById($pdo,$id);
-    view('products', null, $productsArr);
 }

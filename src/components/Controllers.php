@@ -1,14 +1,12 @@
 <?php
 
-if(isset($controllerFileName)){
-    $controllerFile = PATHROOT . '/controllers/'. $controllerFileName .'Controller.php';
+foreach (glob("controllers/*.php") as $filename)
+{
+    include_once $filename;
+}
 
-    if (file_exists($controllerFile)){
-        include_once $controllerFile;
-    }else{
-        view('404');
-        return;
-    }
+if(isset($controllerFileName)){
+
     if ($controllerFileName == 'login'){
         if(!isset($action) and !isset($routId)){
             index();
@@ -23,20 +21,26 @@ if(isset($controllerFileName)){
         }
     }else if($controllerFileName == 'categories'){
         if(!isset($action) and !isset($routId)){
-            index($pdo);
+            catIndex($pdo);
         }elseif (isset($routId)) {
             categoryById($pdo, $routId);
         }else{
             view('404');
         }
-    }else if($controllerFileName == 'products'){
-//        if(!isset($action) and !isset($routId)){
-//            index($pdo);
-//        }elseif (isset($routId)) {
-//            productsByCategoryId($pdo, $routId);
-//        }
+    }else if($controllerFileName == 'orders'){
+        if(!isset($action) and !isset($routId)){
+            orderIndex($pdo);
+        }elseif ($action == 'add' and isset($_POST) ) {
+            addProduct($pdo, $_POST);
+        }elseif ($action == 'basket'){
+            productsInBasket($pdo);
+        }elseif ($action == 'buy'){
+            orderBuy($pdo, $_POST);
+        }
     }else{
         view('404');
     }
+}else{
+    view('default');
 }
 

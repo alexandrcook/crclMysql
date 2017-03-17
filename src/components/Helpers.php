@@ -1,7 +1,7 @@
 <?php
 
 // Show view depends on $action
-function view($viewRoot, $viewName = null, $data = [])
+function view($viewRoot, $data = [], $viewName = null)
 {
     include PATHROOT . '/views/header.php';
     if ($viewName) {
