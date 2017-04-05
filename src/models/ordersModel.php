@@ -22,8 +22,8 @@ function getProductsInBasketById($pdo, $product_id)
 
 function buyProductsInBasket($pdo, $user_id)
 {
-    $insert = $pdo->prepare("UPDATE `orders` SET status = (?)  WHERE `user_id` = {$user_id}");
-    $insert->execute(array('in progress'));
+//    $insert = $pdo->prepare("UPDATE `orders` SET status = (?)  WHERE `user_id` = {$user_id}");
+//    $insert->execute(array('in progress'));
 }
 
 function mailAboutOrderBuy($userInfo, $dataToMsg)
@@ -60,7 +60,10 @@ function mailAboutOrderBuy($userInfo, $dataToMsg)
 
     //exit();
 
+    $headers = "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+
     $subj = 'Internet Shop Message';
 
-    mail($userInfo['email'], $subj, $message);
+    mail($userInfo['email'], $subj, $message, $headers);
 }

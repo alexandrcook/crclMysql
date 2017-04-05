@@ -12,6 +12,7 @@ session_start();
 
 include_once 'components/Db.php';
 include_once 'components/Helpers.php';
+include_once 'config/conf.php';
 include_once 'components/Router.php';
 include_once 'components/Controllers.php';
 

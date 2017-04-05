@@ -50,9 +50,15 @@
 
                         global $pdo;
 
+                        if(isset($_SESSION['role']) and $_SESSION['role'] == 'admin'){
+                            echo ('<li style="float: right">');
+                            echo ('<a style="display: inline-block; padding: 5px; margin: 10px 0 0 10px" class="btn btn-default" href="/admin">Войти в админ панель</a>');
+                            echo ('</li>');
+                        }
+
                         if(isset($_SESSION['user_name'])){
                             echo ('<li style="float: right">');
-                            echo ('<span style="display: inline-block; margin-top: 15px">Залогинен пользователь <b>"'.$_SESSION['user_name'].'"</b></span></span>
+                            echo ('<span style="display: inline-block; margin-top: 15px">Залогинен пользователь <b>"'.$_SESSION['user_name'].'"</b> ('.$_SESSION['role'].')</span></span>
                             <a style="display: inline-block; padding: 5px" class="btn btn-default" href="/login/logout">Выйти</a>');
                             echo ('</li>');
                         }else{

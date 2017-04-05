@@ -40,7 +40,8 @@ var path = {
         vendor: 'build/vendor/',
         models: 'build/models/',
         config: 'build/config/',
-        json: 'build/'
+        json: 'build/',
+        admin: 'build/admin/'
     },
     src: {
         index: 'src/*.php',
@@ -60,7 +61,8 @@ var path = {
         vendor: 'src/vendor/**/*.*',
         models: 'src/models/*.*',
         config: 'src/config/**/*.*',
-        json: 'src/*.json'
+        json: 'src/*.json',
+        admin: 'src/admin/**/*.php'
     },
     watch: {
         index: 'src/**/*.php',
@@ -79,7 +81,8 @@ var path = {
         models: 'src/models/*.*',
         vendor: 'src/vendor/**/*.*',
         config: 'src/config/**/*.*',
-        json: 'src/*.json'
+        json: 'src/*.json',
+        admin: 'src/admin/**/*.php'
     },
     clean: './build'
 };
@@ -87,6 +90,12 @@ var path = {
 gulp.task('index:build', function () {
     gulp.src(path.src.index)
         .pipe(gulp.dest(path.build.index))
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('admin:build', function () {
+    gulp.src(path.src.admin)
+        .pipe(gulp.dest(path.build.admin))
         .pipe(reload({stream: true}));
 });
 
@@ -216,7 +225,8 @@ gulp.task('build', [
     'config:build',
     'vendor:build',
     'views:build',
-    'json:build'
+    'json:build',
+    'admin:build'
 ]);
 
 
@@ -224,6 +234,11 @@ gulp.task('watch', function(){
     watch([path.watch.index], function(event, cb) {
         gulp.start('index:build');
     });
+
+    watch([path.watch.admin], function(event, cb) {
+        gulp.start('admin:build');
+    });
+
     watch(path.watch.phpModules, function(event, cb) {
         gulp.start('phpModules:build');
         //gulp.start('deploy');

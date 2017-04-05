@@ -1,15 +1,17 @@
 <?php
 
 if (!empty($_SERVER['REQUEST_URI']) and trim($_SERVER['REQUEST_URI'], '/') != '') {
-    $url = trim($_SERVER['REQUEST_URI'], '/');
+    $url = parse_url($_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']);
+    $urlArray = explode('/', $url['path']);
+    $parsedUrlArr = array_filter($urlArray);
 
-    $parsedUrlArr = explode('/', $url);
-    $controllerFileName = $parsedUrlArr[0];
+    $controllerFileName = $parsedUrlArr[1];
 
-    if(isset($parsedUrlArr[1])) {
-        if(is_numeric($parsedUrlArr[1])){
-            $routId = $parsedUrlArr[1];
+    if(isset($parsedUrlArr[2])) {
+        if(is_numeric($parsedUrlArr[2])){
+            $routId = $parsedUrlArr[2];
         }
-        else $action = $parsedUrlArr[1];
+        else $action = $parsedUrlArr[2];
     }
+
 }
